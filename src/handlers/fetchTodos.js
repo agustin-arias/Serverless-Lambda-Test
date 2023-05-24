@@ -17,6 +17,9 @@ const fetchTodos = async (event) => {
         message: "Error fetching todos",
         error,
       },
+      headers: {
+        "Content-Type": "application/json",
+      },
     };
   }
 

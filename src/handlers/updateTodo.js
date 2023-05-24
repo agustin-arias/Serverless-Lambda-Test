@@ -1,5 +1,5 @@
 const AWS = require("aws-sdk");
-import { TABLE_NAME } from "./../constants";
+const { TABLE_NAME } = require("../constants");
 const middy = require("../middlewares");
 
 const fetchTodos = async (event) => {
@@ -7,17 +7,19 @@ const fetchTodos = async (event) => {
   const { completed } = event.body;
   const { id } = event.pathParameters;
 
-  await dynamoDB.update({
-    TableName: TABLE_NAME,
-    Key: {
-      id,
-    },
-    UpdateExpression: "set completed = :completed",
-    ExpressionAttributeValues: {
-      ":completed": completed,
-    },
-    ReturnValues: "ALL_NEW",
-  }).promise;
+  await dynamoDB
+    .update({
+      TableName: TABLE_NAME,
+      Key: {
+        id,
+      },
+      UpdateExpression: "set completed = :completed",
+      ExpressionAttributeValues: {
+        ":completed": completed,
+      },
+      ReturnValues: "ALL_NEW",
+    })
+    .promise();
   return {
     statusCode: 200,
     body: JSON.stringify({ msg: "Todo Updated" }),

@@ -13,6 +13,7 @@ const addTodo = async (event) => {
     createdAt,
     completed: false,
     todo,
+    id,
   };
 
   await dynamoDB
@@ -24,7 +25,7 @@ const addTodo = async (event) => {
 
   return {
     statusCode: 200,
-    body: JSON.stringify(todo),
+    body: JSON.stringify(newTodo),
     headers: {
       "Content-Type": "application/json",
     },

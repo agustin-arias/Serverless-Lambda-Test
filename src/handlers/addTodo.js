@@ -25,6 +25,9 @@ const addTodo = async (event) => {
   return {
     statusCode: 200,
     body: JSON.stringify(todo),
+    headers: {
+      "Content-Type": "application/json",
+    },
   };
 };
 

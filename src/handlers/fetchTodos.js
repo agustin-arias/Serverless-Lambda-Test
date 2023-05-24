@@ -23,6 +23,9 @@ const fetchTodos = async (event) => {
   return {
     statusCode: 200,
     body: JSON.stringify(todos),
+    headers: {
+      "Content-Type": "application/json",
+    },
   };
 };
 

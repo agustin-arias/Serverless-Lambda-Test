@@ -1,1 +1,5 @@
-export const TABLE_NAME = "TodoTable";
+const TABLE_NAME = "TodoTable";
+
+module.exports = {
+  TABLE_NAME,
+};

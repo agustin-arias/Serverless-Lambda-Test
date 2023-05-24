@@ -21,6 +21,9 @@ const fetchTodos = async (event) => {
   return {
     statusCode: 200,
     body: JSON.stringify({ msg: "Todo Updated" }),
+    headers: {
+      "Content-Type": "application/json",
+    },
   };
 };
 

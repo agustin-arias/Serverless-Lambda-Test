@@ -12,14 +12,19 @@ const fetchTodo = async (event) => {
     const result = await dynamoDB
       .get({ TableName: TABLE_NAME, Key: { id } })
       .promise();
+
     todo = result.Item;
   } catch (error) {
     console.log({ error });
+
     return {
       statusCode: 500,
       body: {
-        message: "Error fetching todos",
+        message: "Error fetching todo",
         error,
+      },
+      headers: {
+        "Content-Type": "application/json",
       },
     };
   }
@@ -27,6 +32,9 @@ const fetchTodo = async (event) => {
   return {
     statusCode: 200,
     body: JSON.stringify(todo),
+    headers: {
+      "Content-Type": "application/json",
+    },
   };
 };
 
